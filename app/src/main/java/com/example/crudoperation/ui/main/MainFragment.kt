@@ -1,7 +1,9 @@
 package com.example.crudoperation.ui.main
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -28,10 +30,14 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val db = Room.databaseBuilder(context!!, AppDB::class.java, "database-name").build()
+        //val db = Room.databaseBuilder(context!!, AppDB::class.java, "database-name").build()
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        Log.d("2",requestCode.toString())
+    }
 }
