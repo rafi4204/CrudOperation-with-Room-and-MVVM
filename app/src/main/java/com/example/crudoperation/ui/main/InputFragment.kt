@@ -1,26 +1,23 @@
 package com.example.crudoperation.ui.main
 
-import android.content.Intent
-import android.content.IntentSender
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
-import androidx.room.Room
-import com.example.crudoperation.AppDB
+import android.widget.Toast
+import com.example.crudoperation.Base.BaseFragment
 import com.example.crudoperation.R
-import com.example.crudoperation.User
+import com.example.crudoperation.model.User
+import com.example.crudoperation.resitory.UserRepository
+import com.example.crudoperation.viewmodel.MainViewModel
+import kotlinx.android.synthetic.main.input_fragment.*
 
 
-class InputFragment : Fragment() {
+class InputFragment :  BaseFragment() {
 
 
     private lateinit var viewModel: MainViewModel
-
+lateinit var repository: UserRepository
     companion object {
         fun newInstance() = InputFragment()
     }
@@ -35,17 +32,29 @@ class InputFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        //val db = Room.databaseBuilder(context!!, AppDB::class.java, "database-name").build()
+    update_btn.setOnClickListener {
+        if(firstname==null||lastname==null)
+            Toast.makeText(context,"Please enter input",Toast.LENGTH_SHORT).show()
+        else{
+            repository= UserRepository(context!!)
 
-      //  viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        val user=User(1,"rafi","ah")
+            val user= User(
+                firstname.text.toString(),
+                lastname.text.toString()
+            )
+            repository.setUserData(user)
 
-        val intent=Intent()
-        val bundle= bundleOf(Pair("key",2))
+            replaceFragment(MainFragment())
+
+        }
 
 
-        intent.putExtra("get key",bundle)
-        startActivityForResult(intent,101)
+    }
+
+
+
+
+
 
     }
 
