@@ -23,5 +23,9 @@ class UserRepository(context1: Context) {
         db = AppDB.getInstance(context)
         db.userDao().insertAll(user)
     }
+    fun deleteUser(user: User?){
+        db = AppDB.getInstance(context)
+        db.userDao().delete(user)
+    }
 
 }

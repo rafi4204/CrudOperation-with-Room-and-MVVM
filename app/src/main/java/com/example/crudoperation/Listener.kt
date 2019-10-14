@@ -1,5 +1,7 @@
 package com.example.crudoperation
 
+import com.example.crudoperation.model.User
+
 interface Listener {
-    fun adapterListener()
+    fun adapterListener(user: User?)
 }

@@ -19,7 +19,7 @@ class MainViewModel(application:Application) : AndroidViewModel(application) {
             userData.apply {
                 this.value = it
             }
-            Log.d("2", userData?.value?.size.toString())
+            Log.d("2", userData.value?.size.toString())
         }
     }
 

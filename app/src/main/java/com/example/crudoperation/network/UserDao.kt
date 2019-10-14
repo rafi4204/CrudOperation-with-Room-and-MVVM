@@ -1,10 +1,7 @@
 package com.example.crudoperation.network
 
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.example.crudoperation.model.User
 import io.reactivex.Observable
 
@@ -24,5 +21,7 @@ interface UserDao {
     fun insertAll(vararg users: User)
 
     @Delete
-    fun delete(user: User)
+    fun delete(user: User?)
+    @Update
+    fun update(user:User?)
 }
