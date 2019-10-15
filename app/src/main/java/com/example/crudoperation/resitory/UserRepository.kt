@@ -7,24 +7,21 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class UserRepository(context1: Context) {
-    val context = context1
-    lateinit var db: AppDB
+class UserRepository(context: Context) {
+    var db: AppDB = AppDB.getInstance(context)
 
 
     fun getUserData(): Observable<List<User>>? {
 
-        db = AppDB.getInstance(context)
         return db.userDao().getAll().subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
 
     fun setUserData(user: User) {
-        db = AppDB.getInstance(context)
         db.userDao().insertAll(user)
     }
-    fun deleteUser(user: User?){
-        db = AppDB.getInstance(context)
+
+    fun deleteUser(user: User?) {
         db.userDao().delete(user)
     }
 
