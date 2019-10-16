@@ -25,4 +25,9 @@ class UserRepository(context: Context) {
         db.userDao().delete(user)
     }
 
+    fun updateUser(tempUser: User?) {
+        db.userDao().update(tempUser)
+
+    }
+
 }

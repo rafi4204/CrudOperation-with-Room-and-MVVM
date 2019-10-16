@@ -14,6 +14,7 @@ import com.example.crudoperation.Listener
 import com.example.crudoperation.R
 import com.example.crudoperation.model.User
 import com.example.crudoperation.UserAdapter
+import com.example.crudoperation.resitory.UserRepository
 import com.example.crudoperation.utils.AppHelper
 import com.example.crudoperation.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.main_fragment.*
@@ -54,11 +55,18 @@ class MainFragment : BaseFragment(), Listener {
     }
 
 
-    override fun adapterListener(user: User?) {
+    override fun updateListener(user: User?) {
         val bundle = bundleOf("key" to user, AppHelper.CHECKED_ID to 1)
-        val frag=InputFragment()
+        val frag = InputFragment()
         frag.arguments = bundle
         replaceFragment(frag)
+    }
+
+    override fun deleteListener(user: User?) {
+        val repository=UserRepository(context!!)
+        repository.deleteUser(user)
+        viewModel.setUser()
+
     }
 
 }

@@ -34,30 +34,37 @@ class InputFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-         arguments?.getInt(AppHelper.CHECKED_ID, -1) ?.let {
-                checkedId=it
+        arguments?.getInt(AppHelper.CHECKED_ID, -1)?.let {
+            checkedId = it
         }
         if (checkedId == 1) {
             arguments?.getSerializable("key")?.let {
                 tempUser = it as User?
             }
+
+            firstname.setText(tempUser?.firstName)
+            lastname.setText(tempUser?.lastName)
         }
         update_btn.setOnClickListener {
-            if (firstname == null || lastname == null)
+            if (firstname.text.toString() == "" || lastname.text.toString() == "")
                 Toast.makeText(context, "Please enter input", Toast.LENGTH_SHORT).show()
             else {
                 repository = UserRepository(context!!)
 
                 if (checkedId == 1) {
-                    Log.d("334",tempUser?.firstName)
-                    repository.deleteUser(tempUser)
-                }
+                    Log.d("334", tempUser?.firstName)
 
-                val user = User(
-                    firstname.text.toString(),
-                    lastname.text.toString()
-                )
-                repository.setUserData(user)
+                    tempUser?.firstName = firstname.text.toString()
+                    tempUser?.lastName = lastname.text.toString()
+                    repository.updateUser(tempUser)
+                } else {
+
+                    val user = User(
+                        firstname.text.toString(),
+                        lastname.text.toString()
+                    )
+                    repository.setUserData(user)
+                }
 
                 replaceFragment(MainFragment())
 

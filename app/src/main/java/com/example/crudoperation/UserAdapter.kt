@@ -32,7 +32,11 @@ class UserAdapter(val list: List<User>?) : RecyclerView.Adapter<CustomViewHolder
         holder.lastName.text = list?.get(position)?.lastName
         holder.edit.setOnClickListener {
             val user = list?.get(position)
-            listener?.adapterListener(user)
+            listener?.updateListener(user)
+        }
+        holder.delete.setOnClickListener {
+            val user = list?.get(position)
+            listener?.deleteListener(user)
         }
     }
 }
@@ -41,11 +45,13 @@ class CustomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     lateinit var firstName: TextView
     lateinit var lastName: TextView
     lateinit var edit: Button
+    lateinit var delete: Button
 
     init {
         firstName = itemView.findViewById(R.id.firstname)
         lastName = itemView.findViewById(R.id.lastname)
         edit = itemView.findViewById(R.id.edit)
+        delete = itemView.findViewById(R.id.delete)
     }
 
 
