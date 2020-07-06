@@ -1,0 +1,40 @@
+<resources>
+    <dimen name="size_250dp">125dp</dimen>
+    <dimen name="size_200dp">100dp</dimen>
+    <dimen name="size_180dp">90dp</dimen>
+    <dimen name="size_150dp">75dp</dimen>
+    <dimen name="size_130dp">65dp</dimen>
+    <dimen name="size_120dp">60dp</dimen>
+    <dimen name="size_110dp">55dp</dimen>
+    <dimen name="size_100dp">50dp</dimen>
+    <dimen name="size_80dp">40dp</dimen>
+    <dimen name="size_55dp">27.5dp</dimen>
+    <dimen name="size_45dp">22.5dp</dimen>
+    <dimen name="size_40dp">20dp</dimen>
+    <dimen name="size_35dp">17.5dp</dimen>
+    <dimen name="size_30dp">15dp</dimen>
+    <dimen name="size_25dp">12.5dp</dimen>
+    <dimen name="size_20dp">10dp</dimen>
+    <dimen name="size_18dp">9dp</dimen>
+    <dimen name="size_15dp">7.5dp</dimen>
+    <dimen name="size_12dp">6dp</dimen>
+    <dimen name="size_10dp">5dp</dimen>
+    <dimen name="size_8dp">4dp</dimen>
+    <dimen name="size_7dp">3.5dp</dimen>
+    <dimen name="size_5dp">2.5dp</dimen>
+    <dimen name="size_3dp">1.5dp</dimen>
+    <dimen name="size_2dp">1dp</dimen>
+    <dimen name="size_1dp">0.5dp</dimen>
+    <dimen name="size_0.5dp">0.25dp</dimen>
+
+    <dimen name="negative_size_5dp">-2.5dp</dimen>
+
+
+    <dimen name="text_size_16sp">8sp</dimen>
+    <dimen name="text_size_15sp">7.5sp</dimen>
+    <dimen name="text_size_14sp">7sp</dimen>
+    <dimen name="text_size_13sp">6.5sp</dimen>
+    <dimen name="text_size_11sp">5.5sp</dimen>
+    <dimen name="text_size_10sp">5sp</dimen>
+
+</resources>

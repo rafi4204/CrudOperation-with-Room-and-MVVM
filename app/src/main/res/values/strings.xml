@@ -3,4 +3,20 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="gallery">gallery</string>
+    <string name="camera">camera</string>
+    <string name="cancel">cancel</string>
+    <string name="upload_profile_image">Upload Image</string>
+    <string name="select_gender">select gender</string>
+    <string name="age">Age</string>
+    <string name="edit">edit</string>
+    <string name="employee_list">Employee list</string>
+    <string name="insert_new_employee">Insert New Employee</string>
+    <string name="emp_management">employee Management</string>
+    <string name="employee_list_is_empty_please_insert_new_employee">Employee List Is Empty. Please Insert New Employee</string>
+    <string name="update">update</string>
+    <string name="back">Back</string>
+
+    <string name="insert">insert</string>
 </resources>

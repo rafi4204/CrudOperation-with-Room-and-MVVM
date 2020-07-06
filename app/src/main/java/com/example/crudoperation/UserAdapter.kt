@@ -1,9 +1,11 @@
 package com.example.crudoperation
 
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.crudoperation.model.User
@@ -30,6 +32,8 @@ class UserAdapter(val list: List<User>?) : RecyclerView.Adapter<CustomViewHolder
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         holder.firstName.text = list?.get(position)?.firstName
         holder.lastName.text = list?.get(position)?.lastName
+        holder.age.text = list?.get(position)?.age
+        holder.gender.text = list?.get(position)?.gender
         holder.edit.setOnClickListener {
             val user = list?.get(position)
             listener?.updateListener(user)
@@ -38,23 +42,21 @@ class UserAdapter(val list: List<User>?) : RecyclerView.Adapter<CustomViewHolder
             val user = list?.get(position)
             listener?.deleteListener(user)
         }
+        holder.iv.setImageBitmap(list?.get(position)?.image?.size?.let {
+            BitmapFactory.decodeByteArray(
+                list[position].image, 0,it)
+        })
     }
 }
 
 class CustomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    lateinit var firstName: TextView
-    lateinit var lastName: TextView
-    lateinit var edit: Button
-    lateinit var delete: Button
-
-    init {
-        firstName = itemView.findViewById(R.id.firstname)
-        lastName = itemView.findViewById(R.id.lastname)
-        edit = itemView.findViewById(R.id.edit)
-        delete = itemView.findViewById(R.id.delete)
-    }
-
-
+    var firstName: TextView = itemView.findViewById(R.id.firstname)
+    var lastName: TextView = itemView.findViewById(R.id.lastname)
+    var age: TextView = itemView.findViewById(R.id.age)
+    var gender: TextView = itemView.findViewById(R.id.gender)
+    var edit: Button = itemView.findViewById(R.id.edit)
+    var delete: Button = itemView.findViewById(R.id.delete)
+    var iv: ImageView = itemView.findViewById(R.id.iv)
 
 
 }
