@@ -12,6 +12,7 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -68,7 +69,10 @@ class InputFragment : BaseFragment() {
         }
         activity?.title = "Insert Employee Info"
         btn_back.setOnClickListener { //replaceFragment(MainFragment())
-        activity?.onBackPressed()
+            if (checkedId == 1)
+                activity?.onBackPressed()
+            else
+                redirectToDashboard()
         }
         if (checkedId == 1) {
             arguments?.getSerializable("key")?.let {
@@ -79,6 +83,7 @@ class InputFragment : BaseFragment() {
             firstname.setText(tempUser?.firstName)
             lastname.setText(tempUser?.lastName)
             age.setText(tempUser?.age)
+            image = tempUser?.image
             iv.setImageBitmap(tempUser?.image?.size?.let {
                 BitmapFactory.decodeByteArray(
                     tempUser?.image,
@@ -88,18 +93,9 @@ class InputFragment : BaseFragment() {
             })
         }
         btn_img.setOnClickListener {
-            if (ActivityCompat.checkSelfPermission(
-                    context!!,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE
-                ) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(
-                    context!!,
-                    Manifest.permission.READ_EXTERNAL_STORAGE
-                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                    context!!,
-                    Manifest.permission.CAMERA
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
+            if (ActivityCompat.checkSelfPermission(context!!, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(context!!,Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(context!!,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(permissionlist, permissionCode)
             } else {
                 showPickImageDialog()
@@ -143,8 +139,24 @@ class InputFragment : BaseFragment() {
                 replaceFragment(MainFragment())
             }
         }
+        getBackButton()
     }
 
+    private fun getBackButton() {
+        view!!.isFocusableInTouchMode = true
+        view!!.requestFocus()
+        view!!.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            Log.i(tag, "keyCode: $keyCode")
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                if (checkedId == 1)
+                    activity?.onBackPressed()
+                else
+                    redirectToDashboard()
+                return@OnKeyListener true
+            }
+            false
+        })
+    }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,

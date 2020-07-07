@@ -23,4 +23,5 @@ class MainActivity : AppCompatActivity() {
     fun clearBackStackInclusive(tag: String) {
         supportFragmentManager.popBackStack(tag, androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE)
     }
+
 }

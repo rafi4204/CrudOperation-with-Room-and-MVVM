@@ -56,8 +56,7 @@ class MainFragment : BaseFragment(), Listener {
 
         btn_back.setOnClickListener {
             //replaceFragment(DashBoardFragment())
-            (activity as MainActivity).clearBackStackInclusive(DashBoardFragment().javaClass.name)
-            replaceFragment(DashBoardFragment())
+            redirectToDashboard()
         }
 
         getBackButton()
@@ -69,8 +68,7 @@ class MainFragment : BaseFragment(), Listener {
         view!!.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
             Log.i(tag, "keyCode: $keyCode")
             if (keyCode == KeyEvent.KEYCODE_BACK) {
-                (activity as MainActivity).clearBackStackInclusive(DashBoardFragment().javaClass.name)
-                replaceFragment(DashBoardFragment())
+               redirectToDashboard()
                 return@OnKeyListener true
             }
             false
